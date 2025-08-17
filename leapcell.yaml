@@ -1,0 +1,8 @@
+runtime: python3.9
+build: |
+  chmod +x prepare_playwright_env.sh
+  ./prepare_playwright_env.sh
+  pip install -r requirements.txt
+start: python main.py
+port: 8080
+memory: 1024MB
