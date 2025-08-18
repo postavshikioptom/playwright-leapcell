@@ -53,6 +53,12 @@ async def execute_playwright_script(script_file: UploadFile = File(...)):
         
         stdout, stderr = await process.communicate()
         
+        # Выводим логи выполнения скрипта в логи основного приложения
+        if stdout:
+            logger.info(f"STDOUT скрипта {script_file.filename}:\n{stdout.decode()}")
+        if stderr:
+            logger.info(f"STDERR скрипта {script_file.filename}:\n{stderr.decode()}")
+        
         # Удаляем временный файл
         os.unlink(script_path)
         
