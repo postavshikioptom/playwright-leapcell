@@ -24,6 +24,9 @@ apt-get install -y \
   libgbm1 \
   libasound2
 
+echo "Проверка установленных библиотек..."
+ldconfig -p | grep -E "libglib|libnss|libnspr|libdbus|libatk|libcups|libdrm|libxcb|libxkbcommon|libexpat|libx11|libxcomposite|libxdamage|libxext|libxfixes|libxrandr|libgbm|libasound"
+
 echo "Установка Playwright и Chromium..."
 
 # Установка Playwright
@@ -31,5 +34,10 @@ pip install playwright
 
 # Установка браузера Chromium
 playwright install chromium
+
+# Проверка установки Chromium
+echo "Проверка установки Chromium..."
+playwright install-deps
+playwright show-trace
 
 echo "Playwright и Chromium успешно установлены!"

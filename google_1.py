@@ -10,23 +10,35 @@ async def main():
     logger.info("Запуск скрипта google_1.py")
     
     async with async_playwright() as p:
-        # Запуск браузера Chromium
-        browser = await p.chromium.launch()
+        logger.info("Playwright инициализирован")
+        
+        # Запуск браузера Chromium с дополнительными параметрами
+        logger.info("Попытка запуска браузера Chromium")
+        browser = await p.chromium.launch(headless=True)
+        logger.info("Браузер Chromium успешно запущен")
         
         # Создание новой страницы
+        logger.info("Попытка создания новой страницы")
         page = await browser.new_page()
+        logger.info("Новая страница успешно создана")
         
         # Переход на сайт
+        logger.info("Попытка перехода на сайт https://www.google.com")
         await page.goto("https://www.google.com")
+        logger.info("Успешно перешли на сайт https://www.google.com")
         
         # Ожидание 10 секунд
+        logger.info("Ожидание 10 секунд")
         await page.wait_for_timeout(10000)
+        logger.info("Ожидание завершено")
         
         # Запись в лог
         logger.info("GOOGLE - ГОТОВО")
         
         # Закрытие браузера
+        logger.info("Попытка закрытия браузера")
         await browser.close()
+        logger.info("Браузер успешно закрыт")
         
         logger.info("Скрипт завершен")
 

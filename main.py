@@ -73,6 +73,15 @@ async def execute_playwright_script(script_file: UploadFile = File(...)):
 async def health_check():
     return {"status": "ok"}
 
+# Endpoint'ы для проверки здоровья, запрашиваемые инфраструктурой Leapcell
+@app.get("/kaithhealthcheck")
+async def kaith_health_check():
+    return {"status": "ok"}
+
+@app.get("/kaithheathcheck")
+async def kaith_health_check_typo():
+    return {"status": "ok"}
+
 if __name__ == "__main__":
     import uvicorn
     uvicorn.run(app, host="0.0.0.0", port=8080)
